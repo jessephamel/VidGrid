@@ -20,7 +20,7 @@ def main():
 	parser.add_argument("-o", help="output filename, default is output.mp4", type=str)
 	parser.add_argument("-rows", help="number of rows in the grid, default is 3", type=int)
 	parser.add_argument("-d", help="delay time between each clip, default is  0.25", type=float)
-	parser.add_argument("-rand", help="random delay time variation between each clip, default is  0", type=int)
+	parser.add_argument("-rand", help="random delay time variation between each clip, default is  0", type=float)
 
 	inputfile = ''
 	outputfile = 'output.mp4'
@@ -47,19 +47,17 @@ def main():
 
 	#init clips list
 	clips_list = []
-	offset = delay
+	offset = 0
 
 	#Build clips list
 	for i in range(rows*rows):
-		# print(offset)
 		new_clip = original_clip.set_start(offset)	
 		clips_list.append(new_clip)
-		offset += (0.3)	
+		offset += (delay + random.uniform((rand*-1),rand))	
 		
 
 	arranged_clips = clips_array(chunkIt(clips_list,rows))
 
-	
 	arranged_clips.write_videofile(outputfile)
 
 if __name__ == "__main__":
