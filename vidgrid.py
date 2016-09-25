@@ -55,34 +55,11 @@ def main():
 		clips_list.append(new_clip)
 		offset += (delay + random.uniform((rand*-1),rand))	
 		
-
+	#chunks array into rows
 	arranged_clips = clips_array(chunkIt(clips_list,rows))
 
+	#renders video
 	arranged_clips.write_videofile(outputfile)
 
 if __name__ == "__main__":
    main()
-
-#Load clip
-# original_clip = VideoFileClip(target).subclip(0,-0.1).volumex(0.4)
-# original_clip = original_clip.resize(width=((original_clip.w)/3))
-
-# #Init clips list and delay
-# clips_list = []
-# delay = 0
-
-
-# #Build clips list
-# for i in range(rows*rows):
-#     new_clip = original_clip.set_start(delay)
-#     clips_list.append(new_clip)
-#     delay += random.uniform(0.1,0.5)
-
-
-# arranged_clips = clips_array(chunkIt(clips_list,rows))
-
-# # clip = clips_array([[clip1, clip2, clip3],
-# #                           [clip4, clip5, clip6],
-# #                             [clip7, clip8, clip9]])
-
-# arranged_clips.write_videofile("out.mp4", threads=16)
